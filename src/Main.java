@@ -1,5 +1,7 @@
 import models.Conversor;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.text.BreakIterator;
 import java.util.Scanner;
 
@@ -19,6 +21,7 @@ public class Main {
                 Enter the number od the desired option:
                 1.- Make a preset conversion.
                 2.- Make a custom conversion.
+                3.- See history of conversions
                 0.- exit
                 ***********************************************
                 """;
@@ -370,6 +373,27 @@ public class Main {
                         userInput.nextLine();
                     } catch (Exception e) {
                         System.out.println("Error completing the conversion");
+                    }
+                    break;
+
+                case 3:
+                    try {
+                        BufferedReader reader = null;
+                        FileReader file = new FileReader("history.txt");
+                        reader = new BufferedReader(file);
+                        String linea;
+
+                        System.out.println("**********************************************************************************************");
+                        while ((linea = reader.readLine()) != null) {
+                            System.out.println(linea);
+                        }
+                        System.out.println("**********************************************************************************************");
+
+                        if (reader != null) {
+                            reader.close();
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Error getting you conversion history");
                     }
                     break;
 
